@@ -1,0 +1,1 @@
+﻿global using app = ConfigServer.Domain.AggregateModels.ApplicationAggregate;
