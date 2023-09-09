@@ -1,4 +1,5 @@
 ﻿using ConfigServer.Application.Command;
+using NLog;
 using System.Reflection;
 
 namespace ConfigServer.API.Configurations;
@@ -23,6 +24,7 @@ public abstract class ApiApplicationBootstrapper : ApplicationBootstrapper
         await base.ConfigureService(builder);
         builder.Services.LoadServices(Configuration, _assemblies);
         builder.LoadContainers(_assemblies);
+        LogManager.Setup().LoadConfigurationFromFile(Path.Combine(Directory.GetCurrentDirectory(), "nlog.config"));
     }
 
     public override async Task Configure(WebApplication app, IWebHostEnvironment env)

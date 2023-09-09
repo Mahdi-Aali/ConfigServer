@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\LoggerService\LoggerService\LoggerService.csproj" />
     <ProjectReference Include="..\ConfigServer.Application\ConfigServer.Application.csproj" />
     <ProjectReference Include="..\ConfigServer.Domain\ConfigServer.Domain.csproj" />
     <ProjectReference Include="..\ConfigServer.Infrastructure\ConfigServer.Infrastructure.csproj" />

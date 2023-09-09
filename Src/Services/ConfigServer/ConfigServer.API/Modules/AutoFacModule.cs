@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using ConfigServer.Domain.AggregateModels.ApplicationAggregate;
 using ConfigServer.Infrastructure.Repositories;
+using LoggerService;
 
 namespace ConfigServer.API.Modules;
 
@@ -10,5 +11,6 @@ public class AutoFacModule : Module
     {
         base.Load(builder);
         builder.RegisterType<ApplicationRepository>().As<IApplicationRepository>().InstancePerLifetimeScope();
+        builder.RegisterType<LoggerManager>().As<ILoggerManager>().SingleInstance();
     }
 }

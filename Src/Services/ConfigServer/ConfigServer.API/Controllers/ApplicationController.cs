@@ -3,7 +3,6 @@ using ConfigServer.API.Exceptions;
 using ConfigServer.Application.Command.ApplicationCommands;
 using ConfigServer.Application.DTOs;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 

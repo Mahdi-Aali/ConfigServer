@@ -1,7 +1,7 @@
 ﻿using ConfigServer.Domain.AggregateModels.ApplicationAggregate;
 using ConfigServer.Domain.CommonExceptions;
+using LoggerService;
 using MediatR;
-using Microsoft.Extensions.Logging;
 
 namespace ConfigServer.Application.Command.ApplicationCommands;
 
@@ -9,6 +9,7 @@ public class CreateNewApplicationCommandResult : CommandResult
 {
     public bool Result { get; set; }
 }
+
 
 public class CreateNewApplicationCommand : IRequest<CreateNewApplicationCommandResult>
 {
@@ -31,10 +32,10 @@ public class CreateNewApplicationCommand : IRequest<CreateNewApplicationCommandR
 public class CreateNewApplicationCommandHandler : IRequestHandler<CreateNewApplicationCommand, CreateNewApplicationCommandResult>
 {
     private readonly IApplicationRepository _repository;
-    private readonly ILogger<CreateNewApplicationCommandHandler> _logger;
+    private readonly ILoggerManager _loggerManager;
 
-    public CreateNewApplicationCommandHandler(IApplicationRepository repository, ILogger<CreateNewApplicationCommandHandler> logger) 
-        => (_repository, _logger) = (repository, logger);
+    public CreateNewApplicationCommandHandler(IApplicationRepository repository, ILoggerManager loggerManager) 
+        => (_repository, _loggerManager) = (repository, loggerManager);
 
     public async Task<CreateNewApplicationCommandResult> Handle(CreateNewApplicationCommand request, CancellationToken cancellationToken)
     {
@@ -58,7 +59,7 @@ public class CreateNewApplicationCommandHandler : IRequestHandler<CreateNewAppli
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, null);
+            _loggerManager.LogError(ex);
             return new()
             {
                 Result = false,
